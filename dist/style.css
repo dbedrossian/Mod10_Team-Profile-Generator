@@ -14,6 +14,15 @@
     size: 70px;
 }
 
+#cardContainer {
+    background-color: antiquewhite;
+    width: 50%;
+}
+
+.card-content {
+    padding: 15px;
+}
+
 body {
     color: #333;
     -webkit-font-smoothing: antialiased;

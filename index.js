@@ -36,8 +36,8 @@ const managerQuestions = () => {
         }
     ])
     .then((answers) => {
-        team.push(answers);
-        console.log(team);
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        team.push(manager);
         buildTeam();
     })
 };
@@ -72,13 +72,12 @@ const buildTeam = () => {
                     {
                         type: 'input',
                         message: 'What is their Github username?',
-                        name: 'Github',
+                        name: 'github',
                     }
                 ])
                 .then((answers) => {
-                    // console.log(answers);
-                    team.push(answers);
-                    console.log(team);
+                    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+                    team.push(engineer);
                     buildTeam();
                 })
             if (answers.Category === 'Add an Intern')
@@ -105,25 +104,21 @@ const buildTeam = () => {
                     }
                 ])
                 .then((answers) => {
-                    team.push(answers);
-                    console.log(team);
+                    const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+                    team.push(intern);
                     buildTeam();
                 });
             if (answers.Category === 'Finish building your team')
+
                 finish(team);
+                // loop(team);
         })
 };
 
 const generateHTML = (team) => {
     console.log(team);
-    const name = team.name;
-    const id = team.id;
-    const role = team.role;
-    const email = team.email;
-    const github = team.github;
     console.log('generate team');
-    console.log(team[0].name);
- `   <!DOCTYPE html>
+ return `   <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -141,20 +136,19 @@ const generateHTML = (team) => {
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column">
+                <div class="column">` + team.map(team => `
                     <div
                     id="cardContainer"
-                        class="card pb-6 shadow-2xl rounded-xl is-cursor-pointer transform is-duration-300 hover-translate-y">
+                        class="card pb-2 shadow-2xl rounded-xl is-cursor-pointer transform is-duration-300 hover-translate-y">
                         <div class="card-content has-text-left">
-                            <div class="content">
-                                <h3 class="is-size-3 mb-5">${name}</h3>
-                                <h3 class="is-size-4 mb-5">${role}</h3>
-                                <p class="is-size-6 has-text-weight-normal">ID: ${id}</p>
-                                <p class="is-size-6 has-text-weight-normal">Email: ${email}</p>
-                                <p class="is-size-6 has-text-weight-normal">Github ${github}</p>
+                            <div class="content">                          
+                                <h3 class="is-size-3 mb-5">${team.getName()}</h3>
+                                <h3 class="is-size-4 mb-5">${team.getRole()}</h3>
+                                <p class="is-size-6 has-text-weight-normal">ID: ${team.getId()}</p>
+                                <p class="is-size-6 has-text-weight-normal">Email: ${team.getEmail()}</p>
                             </div>
                         </div>
-                    </div>
+                    </div>`).join('') + `
                 </div>
             </div>
         </div>
@@ -166,9 +160,7 @@ const generateHTML = (team) => {
 };
 
 const finish = (team) => {
-    console.log(team);
-    fs.writeFile('newRender/index.html', generateHTML(team));
-    console.log(team);
+    fs.writeFileSync('dist/index.html', generateHTML(team));
     console.log("Success!");
 }
 
