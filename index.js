@@ -145,7 +145,7 @@ const generateHTML = (team) => {
                                 <h3 class="is-size-3 mb-5">${team.getName()}</h3>
                                 <h3 class="is-size-4 mb-5">${team.getRole()}</h3>
                                 <p class="is-size-6 has-text-weight-normal">ID: ${team.getId()}</p>
-                                <p class="is-size-6 has-text-weight-normal">Email: ${team.getEmail()}</p>
+                                <p class="is-size-6 has-text-weight-normal">Email: <a href = "mailto: ${team.getEmail()}">${team.getEmail()}</a></p>
                             </div>
                         </div>
                     </div>`).join('') + `
