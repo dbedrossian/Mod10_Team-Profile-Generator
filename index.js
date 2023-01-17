@@ -131,7 +131,7 @@ const generateHTML = (team) => {
 </head>
 
 <body>
-    <header class="header123">My Team</header>
+    <header class="is-size-1 has-text-left">My Team</header>
   
     <section class="section">
         <div class="container">

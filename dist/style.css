@@ -1,17 +1,18 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 50px;
+    font-size: 14px;
     font-weight: bold;
 }
-
-.header123 {
+ 
+header {
     background-color: blueviolet;
     color: white;
     height: 150px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     size: 70px;
+    padding-left: 200px;
 }
 
 #cardContainer {
@@ -21,6 +22,10 @@
 
 .card-content {
     padding: 15px;
+}
+
+a {
+    size: 12px;
 }
 
 body {
